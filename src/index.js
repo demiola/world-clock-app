@@ -74,4 +74,26 @@ function displayDefaultTimes() {
   }
 }
 
+function updateCity(event) {
+  if (event.target.value !== "") {
+    clearInterval(intervalId);
+    let cityTimeZone = event.target.value;
+    let cityName = cityTimeZone.replace("_", " ").split("/")[1];
+    let cityElement = document.querySelector("#cities-data");
+    intervalId = setInterval(function () {
+      let cityTime = moment().tz(cityTimeZone);
+      cityElement.innerHTML = `<div class="default-city" id="${cityTimeZone}">
+      <div>
+        <h2>${cityName}</h2>
+        <div class="date">${cityTime.format("MMMM D, YYYY")}</div>
+      </div>
+      <div class="time">${cityTime.format("H:mm:ss [<small>]A[</small>]")}</div>
+    </div>`;
+    }, 1000);
+  }
+}
+
 let intervalId = setInterval(displayDefaultTimes, 1000);
+
+let citiesSelectElement = document.querySelector("#cities");
+citiesSelectElement.addEventListener("change", updateCity);
