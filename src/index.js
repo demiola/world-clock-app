@@ -78,18 +78,24 @@ function updateCity(event) {
   if (event.target.value !== "") {
     clearInterval(intervalId);
     let cityTimeZone = event.target.value;
+    if (cityTimeZone === "current") {
+      cityTimeZone = moment.tz.guess();
+    }
     let cityName = cityTimeZone.replace("_", " ").split("/")[1];
     let cityElement = document.querySelector("#cities-data");
     intervalId = setInterval(function () {
       let cityTime = moment().tz(cityTimeZone);
-      cityElement.innerHTML = `<div class="default-city" id="${cityTimeZone}">
+      cityElement.innerHTML = `<div class="city" id="${cityTimeZone}">
       <div>
         <h2>${cityName}</h2>
         <div class="date">${cityTime.format("MMMM D, YYYY")}</div>
       </div>
       <div class="time">${cityTime.format("H:mm:ss [<small>]A[</small>]")}</div>
-    </div>`;
+    </div>
+    <a href="index.html">All Cities</a>`;
     }, 1000);
+  } else {
+    window.location = "index.html";
   }
 }
 
