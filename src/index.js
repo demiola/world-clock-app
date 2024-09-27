@@ -55,12 +55,12 @@ function crudeUpdateTime() {
 // setInterval(crudeUpdateTime, 1000);
 
 function displayDefaultTimes() {
-  let defaultCities = ["los-angeles", "lagos", "tokyo", "ottawa"];
+  let defaultCities = ["lagos", "tokyo", "ottawa", "hyderabad"];
   let defaultCityTimeZones = [
-    "America/Los_Angeles",
     "Africa/Lagos",
     "Asia/Tokyo",
     "America/Toronto",
+    "Asia/Calcutta",
   ];
   console.log(document.querySelector("#lagos"));
   for (let i = 0; i < defaultCities.length; i++) {
